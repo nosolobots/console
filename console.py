@@ -16,7 +16,17 @@
         - cambiar color de fondo y tinta
         - cambiar el tiempo de beep
 
+    Changes:
+        ver: 0.2
+
+        - se añadió __version__
+        - input():
+          - se eliminó el salto de línea final
+          - se añadió valor por defecto a parámetro text
+          - se añadió check de longitud de parámetro text
+
 """
+__version__ = "0.2"
 
 import os
 import pygame
@@ -120,6 +130,7 @@ class ConsoleCanvas():
                 self._font_color)
             if self._beep:
                 self._char_snd.play()
+            pygame.display.update()
 
     def print(self, text):
         for ch in text.upper():
@@ -210,8 +221,9 @@ class Console():
             self._tts_engine.say(text)
             self._tts_engine.runAndWait()
 
-    def input(self, text):
-        self.print(text)
+    def input(self, text=""):
+        if len(text):
+            self.print(text)
 
         cmd = ""
         while(True):
@@ -219,7 +231,7 @@ class Console():
                 if event.type == pygame.KEYDOWN:
                     cmd += self.process_key(event.key, event.mod)
                     if event.key == pygame.K_RETURN:
-                        self._canvas.print('\n')
+                        # self._canvas.print('\n')
                         return cmd
 
     def process_key(self, key, mod):
