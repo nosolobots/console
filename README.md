@@ -31,7 +31,7 @@ Console(src, tts_on=False, font=None, font_size=32)
 
 #### Parámetros:
 
-- **canvas** (pygame.Surface): superficie de pygame sobre la que se crea la consola. Sólo lectura.
+- **canvas** (pygame.Surface): devuelve la referencia a la superficie de pygame sobre la que se crea la consola. Útil para emplear funciones de pygame sobre ella, como los de dibujo. Sólo lectura.
 
 - **tts\_engine** (pyttsx3.Engine): engine pyttsx3 para text-to-speach. Sólo
   lectura.
@@ -81,7 +81,7 @@ print(text="")
 Imprime en la consola el texto a partir de la posición actual del cursor. No
 añade un salto de línea al final.
 
-- **text** (str)): texto a imprimir. Por defecto, vacío.
+- **text** (str): texto a imprimir. Por defecto, vacío.
 - **_returns_**: None
 
 ---
@@ -91,7 +91,7 @@ input(text="")
 ```
 Establece la posición del cursor.
 
-- **text** (str)): nueva posición del cursor (fila, columna).
+- **text** (str): nueva posición del cursor (fila, columna).
 - **_returns_** (str): el texto introducido hasta el return (no incluido).
   Provoca un salto de línea final.
 
