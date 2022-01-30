@@ -8,6 +8,7 @@
 
 __version__ = "0.3"
 
+import sys
 import os
 import pygame
 import pygame.freetype
@@ -23,7 +24,8 @@ class ConsoleCanvas():
 
     _DEFAULT_BACK_COLOR = (10, 10, 10)
     _DEFAULT_FONT_COLOR = (150, 225, 255)
-    _DEFAULT_TTF_FONT_FILE = os.path.join(_fonts_dir, "wopr.ttf")
+    _DEFAULT_TTF_FONT_FILE = os.path.join(_fonts_dir,
+            "wopr-tweaked", "wopr-tweaked.ttf")
     _DEFAULT_KEY_SND_FILE = os.path.join(_audio_dir, 'key.wav')
 
     def __init__(self, scr, font_size, font=None, pause=50):
@@ -69,6 +71,10 @@ class ConsoleCanvas():
     @cursor.setter
     def cursor(self, active):
         self._cursor = active
+        if self._cursor:
+            self.render_cursor()
+        else:
+            self.clear_cursor()
 
     @property
     def cursor_pos(self):
@@ -88,6 +94,14 @@ class ConsoleCanvas():
     @beep.setter
     def beep(self, active):
         self._beep = active
+
+    @property
+    def char_pause(self):
+        return self._char_pause
+
+    @char_pause.setter
+    def char_pause(self, ms):
+        self._char_pause = ms
 
     @property
     def font_color(self):
@@ -112,6 +126,7 @@ class ConsoleCanvas():
     def clear_screen(self):
         # clear surface
         self._scr.fill(self._back_color)
+        # pygame.display.update()
 
         # set cursor
         self.cursor_pos = (0, 0)
@@ -128,6 +143,7 @@ class ConsoleCanvas():
                 self._cursor_height +
                     (self._cursor_height -
                         self._font.get_rect('A').height)))
+        # pygame.display.update()
 
     def render_cursor(self):
         if self._cursor:
@@ -143,6 +159,7 @@ class ConsoleCanvas():
             pygame.display.update()
 
     def print(self, text):
+        #for ch in text:
         for ch in text.upper():
             self.clear_cursor()
 
@@ -208,6 +225,10 @@ class Console():
     # ------------------------------------------------------------------------
 
     @property
+    def canvas(self):
+        return self._canvas
+
+    @property
     def tts_engine(self):
         return self._tts_engine
 
@@ -218,6 +239,14 @@ class Console():
     @tts.setter
     def tts(self, active):
         self._tts_on = active
+
+    @property
+    def cursor(self):
+        return self._canvas.cursor
+
+    @cursor.setter
+    def cursor(self, active):
+        self._canvas.cursor = active
 
     @property
     def beep(self):
@@ -293,6 +322,7 @@ class Console():
                         pygame.K_MINUS,
                         pygame.K_PLUS)):
             letter = pygame.key.name(key).upper()
+            #letter = pygame.key.name(key)
             self._canvas.print(letter)
         elif key == pygame.K_SPACE:
             self._canvas.print(" ")
@@ -322,3 +352,63 @@ class Console():
                 letter = "*"
 
         return letter
+
+
+class WinConsole():
+    """Crea una ventana pygame con la consola inicializada.
+
+    Automatiza el proceso de creación de la ventana pygame y la superficie para
+    la consola.
+    """
+
+    def __init__(self, width, height, title="", full=False, tts=False, font_size=32):
+        # init pygame library
+        pygame.init()
+
+        # create pygame window
+        self._scr = self.init_pygame(width, height, title, full)
+
+        # create console
+        self._console = Console(self._scr, tts_on=tts, font_size=font_size)
+
+
+    # ------------------------------------------------------------------------
+    # PROPIEDADES
+    # ------------------------------------------------------------------------
+
+    @property
+    def console(self):
+        return self._console
+
+
+    # ------------------------------------------------------------------------
+    # METODOS
+    # ------------------------------------------------------------------------
+
+    def init_pygame(self, width, height, title, full):
+        """Inicia pygame y crea la ventana."""
+
+        pygame.init()
+
+        scr = None
+        if full:
+            scr = pygame.display.set_mode(
+                    (0, 0),
+                    pygame.DOUBLEBUF | pygame.FULLSCREEN,
+                    32)
+        else:
+            scr = pygame.display.set_mode(
+                    (width, height),
+                    pygame.DOUBLEBUF,
+                    32)
+            pygame.display.set_caption(title)
+
+        return scr
+
+
+    def exit(self):
+        """Finaliza la aplicación."""
+
+        pygame.display.quit()
+        pygame.quit()
+        sys.exit()
