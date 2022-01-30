@@ -108,5 +108,36 @@ Permite la impresión directa de pulsaciones de teclas.
   modificadoras.
 - **_returns_**: None
 
+---
 
+### Clase WinConsole.
+---
+
+Crea una ventana pygame con una consola iniciada y la fuente por defecto.
+
+#### Constructor:
+
+```python
+
+WinConsole(src, width, height, title="", full=False, tts=False, font_size=32)
+```
+
+- **width** (int): ancho de la ventana.
+
+- **height** (int): alto de la ventana.
+
+- **title** (src): texto del título de la ventana. Por defecto, vacío.
+
+- **full** (bool): indica si se crea la ventana a tamaño completo (full=True) o no. Por defecto, False.
+
+- **tts** (bool): indica si se crea la ventana con el motor de text-to-speach inicializado. Por defecto, False.
+
+- **font_size** (int): tamaño de la fuente. Por defecto, 32
+
+
+#### Parámetros:
+
+- **console** (console.Console): Referencia de la consola de la ventana. Sólo lectura.
+
+---
 
