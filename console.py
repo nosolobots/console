@@ -289,7 +289,7 @@ class Console():
     def make_beep(self):
         self._canvas._char_snd.play()
 
-    def print(self, text):
+    def print(self, text=""):
         self._canvas.print(text)
 
         if self._tts_engine and self._tts_on:

@@ -53,16 +53,60 @@ Console(src, tts_on=False, font=None, font_size=32)
 ```python
 clear() 
 ```
-<br>Limpia la consola.  
+Limpia la consola.  
 
+---
 
 ```python
-set\_cursor(position) 
+set_cursor(position) 
 ```
-<br>Establece la posición del cursor.
+Establece la posición del cursor.
 
 - **position** (tuple(int, int)): nueva posición del cursor (fila, columna).
+- **_returns_**: None
 
+---
+
+```python
+make_beep() 
+```
+Fuerza un beep de la consola.
+
+- **_returns_**: None
+
+---
+
+```python
+print(text="") 
+```
+Imprime en la consola el texto a partir de la posición actual del cursor. No
+añade un salto de línea al final.
+
+- **text** (str)): texto a imprimir. Por defecto, vacío.
+- **_returns_**: None
+
+---
+
+```python
+input(text="") 
+```
+Establece la posición del cursor.
+
+- **text** (str)): nueva posición del cursor (fila, columna).
+- **_returns_** (str): el texto introducido hasta el return (no incluido).
+  Provoca un salto de línea final.
+
+---
+
+```python
+process_key(key, mod) 
+```
+Permite la impresión directa de pulsaciones de teclas. 
+
+- **key** (pygame.KEYUP.key ó pygame.KEYDOWN.key): id de la tecla pulsada.
+- **key** (pygame.KEYUP.mod ó pygame.KEYDOWN.mod): estado de las teclas
+  modificadoras.
+- **_returns_**: None
 
 
 
