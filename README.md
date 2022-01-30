@@ -1,14 +1,14 @@
 
 ### Módulo de la Consola.
----
 
 Proporciona las clases de la consola (Console) y su canvas (ConsoleCanvas) para el programa falken.
 
 La clase WinConsole nos facilita la creación de una ventana de pygame con una
 consola incorporada.
 
-### Clase Console.
 ---
+
+### clase Console.
 
 Clase principal de la consola.
 
@@ -110,10 +110,9 @@ Permite la impresión directa de pulsaciones de teclas.
 
 ---
 
-### Clase WinConsole.
----
+### clase WinConsole.
 
-Crea una ventana pygame con una consola iniciada y la fuente por defecto.
+<br>Crea una ventana pygame con una consola iniciada y la fuente por defecto.
 
 #### Constructor:
 
