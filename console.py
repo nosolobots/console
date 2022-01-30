@@ -361,12 +361,12 @@ class WinConsole():
     la consola.
     """
 
-    def __init__(self, width, height, title="", full=False, tts=False, font_size=32):
+    def __init__(self, width, height, title="WinConsole", full=False, tts=False, font_size=32):
         # init pygame library
         pygame.init()
 
         # create pygame window
-        self._scr = self.init_pygame(width, height, title, full)
+        self._scr = self._init_pygame(width, height, title, full)
 
         # create console
         self._console = Console(self._scr, tts_on=tts, font_size=font_size)
@@ -385,7 +385,7 @@ class WinConsole():
     # METODOS
     # ------------------------------------------------------------------------
 
-    def init_pygame(self, width, height, title, full):
+    def _init_pygame(self, width, height, title, full):
         """Inicia pygame y crea la ventana."""
 
         pygame.init()
@@ -406,9 +406,9 @@ class WinConsole():
         return scr
 
 
-    def exit(self):
+    def exit(self, ret=0):
         """Finaliza la aplicación."""
 
         pygame.display.quit()
         pygame.quit()
-        sys.exit()
+        sys.exit(ret)

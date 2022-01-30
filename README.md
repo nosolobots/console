@@ -117,14 +117,14 @@ Crea una ventana pygame con una consola iniciada y la fuente por defecto.
 
 ```python
 
-WinConsole(src, width, height, title="", full=False, tts=False, font_size=32)
+WinConsole(src, width, height, title="WinConsole", full=False, tts=False, font_size=32)
 ```
 
 - **width** (int): ancho de la ventana.
 
 - **height** (int): alto de la ventana.
 
-- **title** (src): texto del título de la ventana. Por defecto, vacío.
+- **title** (src): texto del título de la ventana. Por defecto, "WinConsole".
 
 - **full** (bool): indica si se crea la ventana a tamaño completo (full=True) o no. Por defecto, False.
 
