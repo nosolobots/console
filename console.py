@@ -4,35 +4,8 @@
 
     Proporciona las clases de la consola (Console) y su canvas (ConsoleCanvas)
     para el programa falken.
-
-    TO-DO:
-
-        - backspace, debe subir una línea si borramos y llegamos al ppio de la
-          linea?
-        - backspace repeat
-        - se debe dejar escribir si pasamos la ultima fila?
-        - shift + números
-        - cambiar el tiempo de beep
-        - posibilidad de capturar ESC o CTRl-C para salir en print() y/o
-          input()
-
-    Changes:
-        ver: 0.3
-        - se añadió Console.clear() y ConsoleCanvas.clear_screen()
-        - se añadión propiedad Console.canvas para acceder al surface
-        - se añadió make_beep() a Console
-        - get/set color de fondo y tinta
-
-        ver: 0.2
-        - se añadió __version__
-        - input():
-          - se eliminó el salto de línea final
-          - se añadió valor por defecto a parámetro text
-          - se añadió check de longitud de parámetro text
-
-        ver: 0.1
-        - se ajustó la posición de QUOTE
 """
+
 __version__ = "0.3"
 
 import os
