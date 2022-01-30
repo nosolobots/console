@@ -3,8 +3,7 @@
 
 Proporciona las clases de la consola (Console) y su canvas (ConsoleCanvas) para el programa falken.
 
-La clase WinConsole nos facilita la creación de una ventana de pygame con una
-consola incorporada.
+La clase WinConsole facilita la creación de una ventana de pygame con una consola incorporada.
 
 ---
 
@@ -112,7 +111,7 @@ Permite la impresión directa de pulsaciones de teclas.
 
 ### clase WinConsole.
 
-<br>Crea una ventana pygame con una consola iniciada y la fuente por defecto.
+Crea una ventana pygame con una consola iniciada y la fuente por defecto.
 
 #### Constructor:
 
@@ -136,7 +135,17 @@ WinConsole(src, width, height, title="", full=False, tts=False, font_size=32)
 
 #### Parámetros:
 
-- **console** (console.Console): Referencia de la consola de la ventana. Sólo lectura.
+- **console** (console.Console): devuelve la referencia a la consola de la ventana. Sólo lectura.
 
 ---
+
+#### Métodos:
+
+```python
+exit(ret=0) 
+```
+Cierra la ventana y finaliza la aplicación.  
+
+- **ret** (int): código de retorno de la aplicación.
+- **_returns_**: None
 
