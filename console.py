@@ -12,21 +12,28 @@
         - backspace repeat
         - se debe dejar escribir si pasamos la ultima fila?
         - shift + números
-        - ajustar la posición de QUOTE [DONE]
-        - cambiar color de fondo y tinta
         - cambiar el tiempo de beep
+        - posibilidad de capturar ESC o CTRl-C para salir en print() y/o
+          input()
 
     Changes:
-        ver: 0.2
+        ver: 0.3
+        - se añadió Console.clear() y ConsoleCanvas.clear_screen()
+        - se añadión propiedad Console.canvas para acceder al surface
+        - se añadió make_beep() a Console
+        - get/set color de fondo y tinta
 
+        ver: 0.2
         - se añadió __version__
         - input():
           - se eliminó el salto de línea final
           - se añadió valor por defecto a parámetro text
           - se añadió check de longitud de parámetro text
 
+        ver: 0.1
+        - se ajustó la posición de QUOTE
 """
-__version__ = "0.2"
+__version__ = "0.3"
 
 import os
 import pygame
@@ -34,6 +41,8 @@ import pygame.freetype
 
 
 class ConsoleCanvas():
+    """Da acceso a la superficie de dibujo de la consola."""
+
     _package_dir = os.path.dirname(os.path.abspath(__file__))
     _resources_dir = os.path.join(_package_dir, "resources")
     _audio_dir = os.path.join(_resources_dir, "audio")
@@ -70,10 +79,11 @@ class ConsoleCanvas():
         self._beep = True
 
         # clear console
-        self._scr.fill(self._back_color)
+        self.clear_screen()
 
-        # show cursor
-        self.render_cursor()
+    # ------------------------------------------------------------------------
+    # PROPIEDADES
+    # ------------------------------------------------------------------------
 
     @property
     def scr(self):
@@ -91,7 +101,7 @@ class ConsoleCanvas():
     def cursor_pos(self):
         return self._cursor_pos
 
-    @cursor.setter
+    @cursor_pos.setter
     def cursor_pos(self, position):
         self.clear_cursor()
         self._cursor_pos[0] = position[0]
@@ -105,6 +115,33 @@ class ConsoleCanvas():
     @beep.setter
     def beep(self, active):
         self._beep = active
+
+    @property
+    def font_color(self):
+        return self._font_color
+
+    @font_color.setter
+    def font_color(self, color):
+        self._font_color = color
+
+    @property
+    def back_color(self):
+        return self._back_color
+
+    @back_color.setter
+    def back_color(self, color):
+        self._back_color = color
+
+    # ------------------------------------------------------------------------
+    # METODOS
+    # ------------------------------------------------------------------------
+
+    def clear_screen(self):
+        # clear surface
+        self._scr.fill(self._back_color)
+
+        # set cursor
+        self.cursor_pos = (0, 0)
 
     def clear_cursor(self):
         # borra posición actual
@@ -178,6 +215,8 @@ class ConsoleCanvas():
             pygame.display.update()
 
 class Console():
+    """Proporciona el interfaz de comunicación con la consola."""
+
     def __init__(self, scr, tts_on=False, font=None, font_size=32):
 
         # TTS
@@ -191,8 +230,9 @@ class Console():
         # canvas
         self._canvas = ConsoleCanvas(scr, font_size, font)
 
-    def set_cursor(self, position):
-        self._canvas.cursor_pos = position
+    # ------------------------------------------------------------------------
+    # PROPIEDADES
+    # ------------------------------------------------------------------------
 
     @property
     def tts_engine(self):
@@ -213,6 +253,39 @@ class Console():
     @beep.setter
     def beep(self, active):
         self._canvas.beep = active
+
+    @property
+    def canvas(self):
+        return self._canvas.scr
+
+    @property
+    def ink(self):
+        return self._canvas.font_color
+
+    @ink.setter
+    def ink(self, color):
+        self._canvas.font_color = color
+
+    @property
+    def paper(self):
+        return self._canvas.back_color
+
+    @paper.setter
+    def paper(self, color):
+        self._canvas.back_color = color
+
+    # ------------------------------------------------------------------------
+    # METODOS
+    # ------------------------------------------------------------------------
+
+    def clear(self):
+        self._canvas.clear_screen()
+
+    def set_cursor(self, position):
+        self._canvas.cursor_pos = position
+
+    def make_beep(self):
+        self._canvas._char_snd.play()
 
     def print(self, text):
         self._canvas.print(text)
