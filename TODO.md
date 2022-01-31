@@ -3,13 +3,14 @@
 #### TO-DO
 
 - [ ] backspace, debe subir una línea si borramos y llegamos al ppio de la
-  linea? #feat 2022-01-21  
-- [ ] backspace repeat #feat 2022-01-21  
-- [ ] se debe dejar escribir si pasamos la ultima fila? #feat 2022-01-21  
-- [ ] caracteres de shift + números #feat 2022-01-21  
-- [ ] cambiar el tiempo de beep #feat 2022-01-21  
-- [ ] posibilidad de capturar ESC o CTRl-C para salir en print() y/o input() #feat 2022-21-01  
-- [ ] permitir mayúsculas y minúsculas #feat 2022-01-22
+  linea? #feat 2022-01-29  
+- [ ] backspace repeat #feat 2022-01-29  
+- [ ] se debe dejar escribir si pasamos la ultima fila? #feat 2022-01-29  
+- [ ] caracteres de shift + números #feat 2022-01-30  
+- [ ] cambiar el tiempo de beep #feat 2022-01-30
+- [ ] posibilidad de capturar ESC o CTRl-C para salir en print() y/o input() #feat 2022-21-30  
+- [ ] permitir mayúsculas y minúsculas #feat 2022-01-30
+- [ ] eliminar caracteres no imprimibles (por ejemplo \b) de input()  #feat 2022-01-31
 
 #### In Progress  
 

@@ -94,11 +94,12 @@ def main(width=_DEFAULT_WIDTH, height=_DEFAULT_HEIGHT, full=False):
     console.print("I can draw on the surface\n\n")
     console.cursor = False
 
-    pygame.draw.circle(console.canvas, (0, 190, 255), (200, 200), 100, 10)
-    pygame.draw.circle(console.canvas, (255, 255, 255), (420, 200), 100, 10)
-    pygame.draw.circle(console.canvas, (255, 0, 0), (640, 200), 100, 10)
-    pygame.draw.circle(console.canvas, (255, 255, 0), (310, 300), 100, 10)
-    pygame.draw.circle(console.canvas, (0, 255, 0), (530, 300), 100, 10)
+    surface = console.canvas.scr
+    pygame.draw.circle(surface, (0, 190, 255), (200, 200), 100, 10)
+    pygame.draw.circle(surface, (255, 255, 255), (420, 200), 100, 10)
+    pygame.draw.circle(surface, (255, 0, 0), (640, 200), 100, 10)
+    pygame.draw.circle(surface, (255, 255, 0), (310, 300), 100, 10)
+    pygame.draw.circle(surface, (0, 255, 0), (530, 300), 100, 10)
 
     pygame.display.update()
     pygame.time.wait(2000)       # pausa

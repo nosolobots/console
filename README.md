@@ -31,10 +31,12 @@ Console(src, tts_on=False, font=None, font_size=32)
 
 #### Parámetros:
 
-- **canvas** (pygame.Surface): devuelve la referencia a la superficie de pygame sobre la que se crea la consola. Útil para emplear funciones de pygame sobre ella, como los de dibujo. Sólo lectura.
+- **canvas** (console.ConsoleCanvas): devuelve la referencia al manejador de la consola. Sólo lectura.
+         A través de él, se puede tener acceso a la superficie de la consola (pygame.Surface) mediante i
+         su propiedad de sólo lectura ```scr``` (canvas.scr). 
+         Útil para, por ejemplo, emplear funciones de pygame sobre ella, como los de dibujo.
 
-- **tts\_engine** (pyttsx3.Engine): engine pyttsx3 para text-to-speach. Sólo
-  lectura.
+- **tts\_engine** (pyttsx3.Engine): engine pyttsx3 para text-to-speach. Sólo lectura.
 
 - **tts** (bool): activa/descativa el text-to-speach. Lectura/escritura.
 

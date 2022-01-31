@@ -257,10 +257,6 @@ class Console():
         self._canvas.beep = active
 
     @property
-    def canvas(self):
-        return self._canvas.scr
-
-    @property
     def ink(self):
         return self._canvas.font_color
 
