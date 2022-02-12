@@ -16,6 +16,9 @@
 
 #### Done ✓  
 
+ver: 0.4  
+- [x] usar backspace en input()  
+
 ver: 0.3  
 - [x] se añadió Console.clear() y ConsoleCanvas.clear_screen()  
 - [x] se añadión propiedad Console.canvas para acceder al surface  

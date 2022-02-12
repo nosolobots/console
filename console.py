@@ -6,7 +6,7 @@
     para el programa falken.
 """
 
-__version__ = "0.3"
+__version__ = "0.4"
 
 import sys
 import os
@@ -293,14 +293,19 @@ class Console():
             self._tts_engine.runAndWait()
 
     def input(self, text=""):
-        if len(text):
+        if len(text) > 0:
             self.print(text)
 
         cmd = ""
-        while(True):
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    cmd += self.process_key(event.key, event.mod)
+                    ch = self.process_key(event.key, event.mod)
+                    if ch != '\b':
+                        cmd += ch
+                    elif len(cmd)>0:
+                        # remove last character
+                        cmd = cmd[:-1]
                     if event.key == pygame.K_RETURN:
                         # self._canvas.print('\n')
                         return cmd
@@ -327,6 +332,7 @@ class Console():
             self._canvas.print("\n")
         elif key == pygame.K_BACKSPACE:
             self._canvas.print("\b")
+            letter = "\b"
         elif mod & pygame.KMOD_SHIFT:
             if key == pygame.K_QUOTE:
                 self._canvas.print("?")
